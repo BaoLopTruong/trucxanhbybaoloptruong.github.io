@@ -28,40 +28,42 @@ class Game extends Node {
 
     _createCards() {
         //no shufferCard
-        let cards = [];
+        // let cards = [];
+        // for (let index = 0; index < 20; index++) {
+        //     let card = new Card(index);
+        //     cards.push(card);
+        //     let col = index % 5;
+        //     let row = Math.floor(index / 5);
+        //     card.setValue(index % 10);
+        //     card.elm.style.top = row * 120 + 'px';
+        //     card.elm.style.left = col * 120 + 'px';
+        //     this.addChild(card);
+        //     card.elm.addEventListener("click", this.onClickCard.bind(this, card));
+        // }
+        // console.log(this.cards);
+        // this.play.elm.style.display = "none";
+        // this._createResetGame();
+        //push shufferCard
+        this.cards = [];
+        for(let index=0; index<20; index++){
+            this.card = new Card();
+            this.cards.push(this.card);
+            this.cards[index].setValue(index % 10);
+        }
+        this.shuffleCards(this.cards);
         for (let index = 0; index < 20; index++) {
-            let card = new Card(index);
-            cards.push(card);
-            let col = index % 5;
-            let row = Math.floor(index / 5);
-            card.setValue(index % 10);
-            card.elm.style.top = row * 120 + 'px';
-            card.elm.style.left = col * 120 + 'px';
-            this.addChild(card);
-            card.elm.addEventListener("click", this.onClickCard.bind(this, card));
+        let col = index % 5;
+        let row = Math.floor(index / 5);
+        this.cards[index].label.text =index+1;
+  
+        this.cards[index].elm.style.top = row * 120 + 'px';
+        this.cards[index].elm.style.left = col * 120 + 'px';
+        this.addChild(this.cards[index]);
+        this.cards[index].elm.addEventListener("click", this.onClickCard.bind(this, this.cards[index]));
         }
         console.log(this.cards);
         this.play.elm.style.display = "none";
         this._createResetGame();
-        //push shufferCard
-        // this.cards = [];
-        // for(let index=0; index<20; index++){
-        //     this.card = new Card();
-        //     this.cards.push(this.card);
-        //     this.cards[index].setValue(index % 10);
-        // }
-        // this.shuffleCards(this.cards);
-        // for (let index = 0; index < 20; index++) {
-        // let col = index % 5;
-        // let row = Math.floor(index / 5);
-        // this.cards[index].label.text =index+1;
-  
-        // this.cards[index].elm.style.top = row * 120 + 'px';
-        // this.cards[index].elm.style.left = col * 120 + 'px';
-        // this.addChild(this.cards[index]);
-        // this.cards[index].elm.addEventListener("click", this.onClickCard.bind(this, this.cards[index]));
-        // }
-        // console.log(this.cards);
     }
 
     shuffleCards(array) {
